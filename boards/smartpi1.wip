@@ -9,7 +9,7 @@ KERNEL_TARGET="legacy,current,edge"
 
 function post_config_uboot_target__extra_configs_for_smartpi() {
 	display_alert "$BOARD" "set dram clock" "info"
-	run_host_command_logged scripts/config --set-val CONFIG_DRAM_CLK "576"
-	run_host_command_logged scripts/config --set-val CONFIG_DRAM_ZQ "3881979"
-	run_host_command_logged scripts/config --enable CONFIG_DRAM_ODT_EN
+	#run_host_command_logged scripts/config --set-val CONFIG_DRAM_CLK "576"
+	#run_host_command_logged scripts/config --set-val CONFIG_DRAM_ZQ "3881979"
+	#run_host_command_logged scripts/config --enable CONFIG_DRAM_ODT_EN
 }
