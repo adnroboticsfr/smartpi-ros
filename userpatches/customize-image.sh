@@ -55,8 +55,15 @@ Main() {
     echo "source /home/pi/$WORKSPACE_DIR/devel/setup.bash" >> ~/.bashrc
     source ~/.bashrc
     sudo apt auto remove
+    copyOnboardConf
 }
 
+copyOnboardConf() {
+    echo "Copy onboard default configuration ..."
+    mkdir -p /etc/onboard
+    cp -v /tmp/overlay/onboard-defaults.conf /etc/onboard/
+    echo "Copy onboard default configuration ... [DONE]"
+}
 
 
 Main "$@"
