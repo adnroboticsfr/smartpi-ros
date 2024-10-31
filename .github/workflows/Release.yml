@@ -8,7 +8,7 @@ concurrency:
 
 jobs:
   update-main-branch:
-    name: Update main branch
+    name: Update main branch 
     runs-on: ubuntu-latest
     steps:
       - name: Merge branches
