@@ -8,17 +8,12 @@ concurrency:
 
 jobs:
   update-main-branch:
-    name: Update main branch 
+    name: Update main branch
     runs-on: ubuntu-latest
     steps:
-      - name: Merge branches
-        uses: everlytic/branch-merge@1.1.5
+      - uses: everlytic/branch-merge@1.1.5
         with:
-<<<<<<< HEAD
-          github_token: ${{ secrets.PAT }} 
-=======
-          github_token: ${{ secrets.PAT1 }}
->>>>>>> b4890dc95230bdaa345ebfdbc11e7c1625ebd9ed
+          github_token: ${{ secrets.PAT }}
           source_ref: "develop"
           target_branch: "main"
           commit_message_template: "[Automated] Merged {source_ref} into target {target_branch}"
@@ -79,7 +74,7 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           name: ${{ steps.release_tag.outputs.release_tag }}
-          tag_name: ${{ steps.release_tag.outputs.release_tag }}
+          tag_name: ${{ steps.time.outputs.time }}
           token: ${{ secrets.GITHUB_TOKEN }}
           draft: true
 
@@ -130,7 +125,8 @@ jobs:
         shell: bash
         run: |
           source ./build-configs/configs/config-default.conf
-          img_name="${VENDOR}-${{ matrix.configfile }}"
+          img_name="${VENDOR}"
+          img_name="${img_name}-${{ matrix.configfile }}"
           echo "image_name=${img_name}" >> $GITHUB_OUTPUT
           echo "::group::Image name"
           echo "Image name: ${img_name}"
@@ -139,18 +135,18 @@ jobs:
       - name: Rename Files
         run: |
           cd ${{ github.workspace }}/build/output/images/
-          mv *.img "${{ steps.image_name.outputs.image_name }}.img"
-          mv *.txt "${{ steps.image_name.outputs.image_name }}.txt"
+          mv *.img ${{ steps.image_name.outputs.image_name }}.img
+          mv *.txt ${{ steps.image_name.outputs.image_name }}.txt
 
       - name: Compressing Image
         run: |
           cd ${{ github.workspace }}/build/output/images/
-          xz -efkvzT0 "${{ steps.image_name.outputs.image_name }}.img" || true
+          xz -efkvzT0 ${{ steps.image_name.outputs.image_name }}.img || true
 
       - name: Calculating checksums
         run: |
           cd ${{ github.workspace }}/build/output/images/
-          sha256sum "${{ steps.image_name.outputs.image_name }}.img.xz" > "${{ steps.image_name.outputs.image_name }}.img.xz.sha256"
+          sha256sum ${{ steps.image_name.outputs.image_name }}.img.xz > ${{ steps.image_name.outputs.image_name }}.img.xz.sha256
 
       - name: Upload Image to Release
         if: needs.release.outputs.id != ''
