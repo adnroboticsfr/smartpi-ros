@@ -40,6 +40,7 @@ Main() {
                 ros-core-dev roslisp ros-tf2-msgs ros-desktop-lisp-dev ros-perception-dev ros-camera-calibration
     sudo apt install libpcl-ros*
     cd ~/catkin_ws/src
+    catkin_init_workspace
     git clone https://github.com/ros/geometry2.git
     git clone https://github.com/ros/media_export
     if [ -f /etc/ros/rosdep/sources.list.d/20-default.list ]; then
