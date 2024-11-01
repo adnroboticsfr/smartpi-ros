@@ -48,6 +48,7 @@ Main() {
     sudo python3 setup.py sdist bdist_wheel
     sudo pip3 install dist/smartpi_gpio-1.0.0-py3-none-any.whl
     cd ~/catkin_ws/src
+    catkin_init_workspace
     git clone https://github.com/ros/geometry2.git
     git clone https://github.com/ros/media_export
     git clone https://github.com/adnroboticsfr/USB-Camera-Node-ROS.git
