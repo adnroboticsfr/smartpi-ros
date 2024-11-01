@@ -23,9 +23,11 @@ BUILD_DESKTOP=$4
 Main() {
     # Ajout des commandes apt update et installation des dépendances
     sudo apt update && sudo apt upgrade -y
-    sudo apt install -y curl gnupg2 lsb-release catkin v4l-utils libv4l-dev python3-cv-bridge python3-smbus
+    sudo apt install -y curl gnupg2 lsb-release catkin v4l-utils libv4l-dev python3-cv-bridge python3-smbus python3.11-venv \
+         paho-mqtt flask celery redis requests psutil pyzmq cryptography zeroconf tensorflow scikit-learn
     sudo apt install gstreamer1.0-plugins-base gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly
     sudo apt install -y ros-desktop-full-python-dev
+    pip3 install pyzmq
     sudo apt install -y python3-rosinstall python3-rosinstall-generator python3-wstool build-essential
     sudo apt install python3-rosdep2 rosbash ros-shape-msgs ros-geometry-msgs ros-cmake-modules ros-image-publisher \
                 ros-perception-lisp-dev ros-desktop-full-lisp-dev ros2-test-interface-files ros-image-proc \
