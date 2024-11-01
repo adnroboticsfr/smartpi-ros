@@ -39,9 +39,18 @@ Main() {
                 roslang ros-simulators-lisp-dev ros-diagnostic-msgs ros-robot-python-dev ros-viz-dev \
                 ros-core-dev roslisp ros-tf2-msgs ros-desktop-lisp-dev ros-perception-dev ros-camera-calibration
     sudo apt install libpcl-ros*
+    # Ajout SmartPI-GPIO
+    sudo apt update 
+    sudo apt-get install -y python3-dev python3-pip libjpeg-dev zlib1g-dev libtiff-dev
+    sudo mv /usr/lib/python3.11/EXTERNALLY-MANAGED /usr/lib/python3.11/EXTERNALLY-MANAGED.old
+    git clone https://github.com/ADNroboticsfr/smartpi-gpio.git
+    cd smartpi-gpio
+    sudo python3 setup.py sdist bdist_wheel
+    sudo pip3 install dist/smartpi_gpio-1.0.0-py3-none-any.whl
     cd ~/catkin_ws/src
     git clone https://github.com/ros/geometry2.git
     git clone https://github.com/ros/media_export
+    git clone https://github.com/adnroboticsfr/USB-Camera-Node-ROS.git
     if [ -f /etc/ros/rosdep/sources.list.d/20-default.list ]; then
         sudo rm /etc/ros/rosdep/sources.list.d/20-default.list
     fi
