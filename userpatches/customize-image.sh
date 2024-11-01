@@ -66,6 +66,7 @@ Main() {
     source ~/.bashrc
     sudo apt auto remove
     copyOnboardConf
+    patchOnboardAutostart
 }
 
 copyOnboardConf() {
@@ -73,6 +74,14 @@ copyOnboardConf() {
     mkdir -p /etc/onboard
     cp -v /tmp/overlay/onboard-defaults.conf /etc/onboard/
     echo "Copy onboard default configuration ... [DONE]"
+}
+
+patchOnboardAutostart() {
+    local conf
+    conf="/etc/xdg/autostart/onboard-autostart.desktop"
+    echo "Patch Onboard Autostart file ..."
+    sed -i '/OnlyShowIn/s/^/# /' "${conf}"
+    echo "Patch Onboard Autostart file ... [DONE]"
 }
 
 
