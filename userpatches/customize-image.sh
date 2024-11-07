@@ -54,6 +54,7 @@ Main() {
     git clone https://github.com/ros/geometry2.git
     git clone https://github.com/ros/media_export
     git clone https://github.com/adnroboticsfr/USB-Camera-Node-ROS.git
+    git clone https://github.com/ros/ros_comm
     if [ -f /etc/ros/rosdep/sources.list.d/20-default.list ]; then
         sudo rm /etc/ros/rosdep/sources.list.d/20-default.list
     fi
